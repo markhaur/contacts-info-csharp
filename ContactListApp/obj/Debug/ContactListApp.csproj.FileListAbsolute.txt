@@ -1,0 +1,10 @@
+C:\Users\faisal.nisar.AFINITI\source\repos\ContactListApp\ContactListApp\bin\Debug\ContactListApp.exe.config
+C:\Users\faisal.nisar.AFINITI\source\repos\ContactListApp\ContactListApp\bin\Debug\ContactListApp.exe
+C:\Users\faisal.nisar.AFINITI\source\repos\ContactListApp\ContactListApp\bin\Debug\ContactListApp.pdb
+C:\Users\faisal.nisar.AFINITI\source\repos\ContactListApp\ContactListApp\obj\Debug\ContactListApp.csprojAssemblyReference.cache
+C:\Users\faisal.nisar.AFINITI\source\repos\ContactListApp\ContactListApp\obj\Debug\ContactListApp.Properties.Resources.resources
+C:\Users\faisal.nisar.AFINITI\source\repos\ContactListApp\ContactListApp\obj\Debug\ContactListApp.csproj.GenerateResource.cache
+C:\Users\faisal.nisar.AFINITI\source\repos\ContactListApp\ContactListApp\obj\Debug\ContactListApp.csproj.CoreCompileInputs.cache
+C:\Users\faisal.nisar.AFINITI\source\repos\ContactListApp\ContactListApp\obj\Debug\ContactListApp.exe
+C:\Users\faisal.nisar.AFINITI\source\repos\ContactListApp\ContactListApp\obj\Debug\ContactListApp.pdb
+C:\Users\faisal.nisar.AFINITI\source\repos\ContactListApp\ContactListApp\obj\Debug\ContactListApp.mainForm.resources
