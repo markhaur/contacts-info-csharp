@@ -1,0 +1,17 @@
+C:\Users\faisal.nisar.AFINITI\source\repos\ContactListApp\TestContactInfo.UnitTests\bin\Debug\Microsoft.VisualStudio.TestPlatform.MSTest.TestAdapter.dll
+C:\Users\faisal.nisar.AFINITI\source\repos\ContactListApp\TestContactInfo.UnitTests\bin\Debug\Microsoft.VisualStudio.TestPlatform.MSTestAdapter.PlatformServices.Interface.dll
+C:\Users\faisal.nisar.AFINITI\source\repos\ContactListApp\TestContactInfo.UnitTests\bin\Debug\Microsoft.VisualStudio.TestPlatform.MSTestAdapter.PlatformServices.dll
+C:\Users\faisal.nisar.AFINITI\source\repos\ContactListApp\TestContactInfo.UnitTests\bin\Debug\TestContactInfo.UnitTests.dll
+C:\Users\faisal.nisar.AFINITI\source\repos\ContactListApp\TestContactInfo.UnitTests\bin\Debug\TestContactInfo.UnitTests.pdb
+C:\Users\faisal.nisar.AFINITI\source\repos\ContactListApp\TestContactInfo.UnitTests\bin\Debug\ContactListApp.exe
+C:\Users\faisal.nisar.AFINITI\source\repos\ContactListApp\TestContactInfo.UnitTests\bin\Debug\Microsoft.VisualStudio.TestPlatform.TestFramework.dll
+C:\Users\faisal.nisar.AFINITI\source\repos\ContactListApp\TestContactInfo.UnitTests\bin\Debug\Microsoft.VisualStudio.TestPlatform.TestFramework.Extensions.dll
+C:\Users\faisal.nisar.AFINITI\source\repos\ContactListApp\TestContactInfo.UnitTests\bin\Debug\ContactListApp.pdb
+C:\Users\faisal.nisar.AFINITI\source\repos\ContactListApp\TestContactInfo.UnitTests\bin\Debug\ContactListApp.exe.config
+C:\Users\faisal.nisar.AFINITI\source\repos\ContactListApp\TestContactInfo.UnitTests\bin\Debug\Microsoft.VisualStudio.TestPlatform.TestFramework.xml
+C:\Users\faisal.nisar.AFINITI\source\repos\ContactListApp\TestContactInfo.UnitTests\bin\Debug\Microsoft.VisualStudio.TestPlatform.TestFramework.Extensions.xml
+C:\Users\faisal.nisar.AFINITI\source\repos\ContactListApp\TestContactInfo.UnitTests\obj\Debug\TestContactInfo.UnitTests.csprojAssemblyReference.cache
+C:\Users\faisal.nisar.AFINITI\source\repos\ContactListApp\TestContactInfo.UnitTests\obj\Debug\TestContactInfo.UnitTests.csproj.CoreCompileInputs.cache
+C:\Users\faisal.nisar.AFINITI\source\repos\ContactListApp\TestContactInfo.UnitTests\obj\Debug\TestContactInfo.UnitTests.csproj.CopyComplete
+C:\Users\faisal.nisar.AFINITI\source\repos\ContactListApp\TestContactInfo.UnitTests\obj\Debug\TestContactInfo.UnitTests.dll
+C:\Users\faisal.nisar.AFINITI\source\repos\ContactListApp\TestContactInfo.UnitTests\obj\Debug\TestContactInfo.UnitTests.pdb

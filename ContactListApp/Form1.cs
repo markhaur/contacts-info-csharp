@@ -1,23 +1,17 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
 
 namespace ContactListApp
 {
-    public partial class mainForm : Form
+    public partial class MainForm : Form
     {
         private int LIST_BOX_SELECTION;
         private int ACTIVE_ENTRIES;
         private int DELETE_LIST_INDEX;
+        private MyDataStructure myDataStructure;
 
-        public mainForm()
+        public MainForm()
         {
             InitializeComponent();
             this.ControlBox = false;
@@ -34,6 +28,7 @@ namespace ContactListApp
             ACTIVE_ENTRIES = 0;
             LIST_BOX_SELECTION = -1;
             DELETE_LIST_INDEX = -1;
+            myDataStructure = new MyDataStructure(this.lstPhoneNumber, this.lstFirtName, this.lstLastName);
         }
 
         private void btnLoadFile_Click(object sender, EventArgs e)
@@ -52,9 +47,7 @@ namespace ContactListApp
                     {
                         break;
                     }
-                    this.lstPhoneNumber.Items.Add(lines[i]);
-                    this.lstFirtName.Items.Add(lines[i+1]);
-                    this.lstLastName.Items.Add(lines[i+2]);
+                    myDataStructure.addEntry(lines[i], lines[i + 1], lines[i + 2]);
                     ACTIVE_ENTRIES += 1;
                 }
                 this.btnClear.Enabled = true;
@@ -176,22 +169,16 @@ namespace ContactListApp
                 return;
             }
 
-            if (searchPhoneNumber(phoneNumber) != -1)
+            if (myDataStructure.searchPhoneNumber(phoneNumber) != -1)
             {
                 MessageBox.Show("Phone Number already exists", "Operation Failed");
                 return;
             }
 
-            int index;
-            for (index = 0; index < this.lstPhoneNumber.Items.Count; index++)
-            {
-                if (phoneNumber.CompareTo(this.lstPhoneNumber.Items[index].ToString()) > 0)
-                    continue;
-                break;
-            }
-            this.lstPhoneNumber.Items.Insert(index, phoneNumber);
-            this.lstFirtName.Items.Insert(index, firstName);
-            this.lstLastName.Items.Insert(index, lastName);
+            myDataStructure.addEntry(phoneNumber, firstName, lastName);
+            this.txtFirstName.Text = "";
+            this.txtLastName.Text = "";
+            this.txtPhoneNumber.Text = "";
             ACTIVE_ENTRIES += 1;
             this.lblActiveEntries.Text = "Active Entries : " + ACTIVE_ENTRIES;
             this.btnClear.Enabled = true;
@@ -234,41 +221,6 @@ namespace ContactListApp
             this.btnAdd.Enabled = true;
         }
 
-        private int searchPhoneNumber(String phoneNumber)
-        {
-            if (this.lstPhoneNumber.Items.Count == 0)
-                return -1;
-
-            int minNum = 0;
-            int maxNum = this.lstPhoneNumber.Items.Count - 1;
-            while (minNum <= maxNum)
-            {
-                int mid = (minNum + maxNum) / 2;
-                if (phoneNumber.Equals(this.lstPhoneNumber.Items[mid].ToString()))
-                    return mid;
-                else if (phoneNumber.CompareTo(this.lstPhoneNumber.Items[mid].ToString()) < 0)
-                    maxNum = mid - 1;
-                else
-                    minNum = mid + 1;
-            }
-            return -1;
-        }
-
-        private int searchName(ListBox listBox, String key)
-        {
-            if (listBox.Items.Count == 0)
-                return -1;
-
-            for(int index = 0; index < listBox.Items.Count; index++)
-            {
-                if (key.CompareTo(listBox.Items[index].ToString()) == 0)
-                {
-                    return index;
-                }
-            }
-            return -1;
-        }
-
         private void btnSearch_Click(object sender, EventArgs e)
         {
             String textKey = this.txtSearch.Text;
@@ -280,18 +232,15 @@ namespace ContactListApp
             int searchIndex = 0;
             if (radPhoneNumber.Checked)
             {
-                this.Text = "searching in phone";
-                searchIndex = searchPhoneNumber(textKey);
+                searchIndex = myDataStructure.searchPhoneNumber(textKey);
             }
             else if (radFirstName.Checked)
             {
-                this.Text = "searching in first";
-                searchIndex = searchName(this.lstFirtName, textKey);
+                searchIndex = myDataStructure.searchFirstName(textKey);
             }
             else if (radLastName.Checked)
             {
-                this.Text = "searching in last";
-                searchIndex = searchName(this.lstLastName, textKey);
+                searchIndex = myDataStructure.searchLastName(textKey);
             }
             else
             {
@@ -312,41 +261,122 @@ namespace ContactListApp
             this.lstLastName.Items.RemoveAt(DELETE_LIST_INDEX);
             ACTIVE_ENTRIES -= 1;
             this.lblActiveEntries.Text = "Active Entries: " + ACTIVE_ENTRIES;
+            this.btnSave.Enabled = true;
 
             if (this.lstPhoneNumber.Items.Count == 0)
             {
                 this.btnSave.Enabled = false;
                 this.btnClear.Enabled = false;
                 this.btnDelete.Enabled = false;
-                this.btnSearch.Enabled = false;
-                this.txtSearch.Enabled = false;
-                this.radFirstName.Enabled = false;
-                this.radLastName.Enabled = false;
-                this.radPhoneNumber.Enabled = false;
+                disableSearchGroupBox();
             }
         }
 
         private void lstPhoneNumber_MouseDown(object sender, MouseEventArgs e)
         {
+            LIST_BOX_SELECTION = 0;
             DELETE_LIST_INDEX = this.lstPhoneNumber.SelectedIndex;
+            if (DELETE_LIST_INDEX == -1)
+                return;
             this.picDelete.DoDragDrop(this.lstPhoneNumber.SelectedItem.ToString(), DragDropEffects.All);
         }
 
         private void lstFirtName_MouseDown(object sender, MouseEventArgs e)
         {
+            LIST_BOX_SELECTION = 1;
             DELETE_LIST_INDEX = this.lstFirtName.SelectedIndex;
+            if (DELETE_LIST_INDEX == -1)
+                return;
             this.picDelete.DoDragDrop(this.lstFirtName.SelectedItem.ToString(), DragDropEffects.All);
         }
 
         private void lstLastName_MouseDown(object sender, MouseEventArgs e)
         {
+            LIST_BOX_SELECTION = 2;
             DELETE_LIST_INDEX = this.lstLastName.SelectedIndex;
+            if (DELETE_LIST_INDEX == -1)
+                return;
             this.picDelete.DoDragDrop(this.lstLastName.SelectedItem.ToString(), DragDropEffects.All);
         }
 
         private void picDelete_DragEnter(object sender, DragEventArgs e)
         {
             e.Effect = DragDropEffects.All;
+        }
+    }
+
+    public class MyDataStructure
+    {
+        private ListBox lstPhoneNumber;
+        private ListBox lstFirstName;
+        private ListBox lstLastName;
+
+        public MyDataStructure(ListBox lstPhoneNumber,
+                                ListBox lstFirstName,
+                                ListBox lstLastName)
+        {
+            this.lstPhoneNumber = lstPhoneNumber;
+            this.lstFirstName = lstFirstName;
+            this.lstLastName = lstLastName;
+        }
+
+        public void addEntry(String phoneNumber, String firstName, String lastName)
+        {
+            int index;
+            for (index = 0; index < this.lstPhoneNumber.Items.Count; index++)
+            {
+                if (phoneNumber.CompareTo(this.lstPhoneNumber.Items[index].ToString()) > 0)
+                    continue;
+                break;
+            }
+            this.lstPhoneNumber.Items.Insert(index, phoneNumber);
+            this.lstFirstName.Items.Insert(index, firstName);
+            this.lstLastName.Items.Insert(index, lastName);
+        }
+
+        public int searchPhoneNumber(String phoneNumber)
+        {
+            if (this.lstPhoneNumber.Items.Count == 0)
+                return -1;
+
+            int minNum = 0;
+            int maxNum = this.lstPhoneNumber.Items.Count - 1;
+            while (minNum <= maxNum)
+            {
+                int mid = (minNum + maxNum) / 2;
+                if (phoneNumber.Equals(this.lstPhoneNumber.Items[mid].ToString()))
+                    return mid;
+                else if (phoneNumber.CompareTo(this.lstPhoneNumber.Items[mid].ToString()) < 0)
+                    maxNum = mid - 1;
+                else
+                    minNum = mid + 1;
+            }
+            return -1;
+        }
+
+        public int searchFirstName(String firstName)
+        {
+            return this.searchName(this.lstFirstName, firstName);
+        }
+
+        public int searchLastName(String lastName)
+        {
+            return this.searchName(this.lstLastName, lastName);
+        }
+
+        private int searchName(ListBox listBox, String key)
+        {
+            if (listBox.Items.Count == 0)
+                return -1;
+
+            for (int index = 0; index < listBox.Items.Count; index++)
+            {
+                if (key.CompareTo(listBox.Items[index].ToString()) == 0)
+                {
+                    return index;
+                }
+            }
+            return -1;
         }
     }
 }

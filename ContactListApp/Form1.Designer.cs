@@ -1,6 +1,6 @@
 ﻿namespace ContactListApp
 {
-    partial class mainForm
+    partial class MainForm
     {
         /// <summary>
         /// Required designer variable.
@@ -331,7 +331,7 @@
             this.picDelete.DragDrop += new System.Windows.Forms.DragEventHandler(this.picDelete_DragDrop);
             this.picDelete.DragEnter += new System.Windows.Forms.DragEventHandler(this.picDelete_DragEnter);
             // 
-            // mainForm
+            // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -351,7 +351,7 @@
             this.Controls.Add(this.lstPhoneNumber);
             this.Controls.Add(this.lstLastName);
             this.Controls.Add(this.lstFirtName);
-            this.Name = "mainForm";
+            this.Name = "MainForm";
             this.Text = "30014914";
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
